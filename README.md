@@ -37,11 +37,11 @@ postcss(url({
 
 ## url
 
-The same with `custom.bind([ util.inline, util.copy ])`
+The same with `custom.bind(null, [ util.inline, util.copy ])`
 
 ## plugin = url.plugin(name, customTransforms)
 `url.plugin` will create a postcss-plugin,
-with the function `custom.bind(customTransforms)`
+with the function `custom.bind(null, customTransforms)`
 
 If `name` not `string`,
 it is treated as `customTransforms`
