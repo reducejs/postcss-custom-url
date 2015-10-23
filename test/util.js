@@ -1,19 +1,16 @@
 import test from 'tape'
-import { base64, inline, copy, rebase } from '../lib/util'
+import { inline, copy, rebase } from '../lib/util'
+import Result from '../lib/result'
 import path from 'path'
 import del from 'del'
 
 var fixtures = path.resolve.bind(path, __dirname, 'fixtures')
 
 test('rebase', function(t) {
-  let result = {
-    file: '/path/to/src/css/i/a.png',
-    url: 'i/a.png',
-    opts: {
-      from: '/path/to/src/css/a.css',
-      to: '/path/to/build/css/a.css',
-    },
-  }
+  let result = new Result('i/a.png', {
+    from: '/path/to/src/css/a.css',
+    to: '/path/to/build/css/a.css',
+  })
   rebase(result)
   t.equal(result.url, '../../src/css/i/a.png')
   t.end()
@@ -21,17 +18,11 @@ test('rebase', function(t) {
 
 test('inline', function(t) {
   let url = 'images/octocat_setup.png'
-  let result = {
-    file: fixtures(url),
-    url: url,
-    opts: {
-      from: fixtures('a.css'),
-    },
-  }
+  let result = new Result(url, { from: fixtures('a.css') })
   t.task(function () {
     return inline(result)
       .then(function () {
-        return base64(result.file)
+        return Result.dataUrl(result.file)
       })
       .then(function (dataUrl) {
         t.equal(result.url, dataUrl, 'should inline')
@@ -39,8 +30,7 @@ test('inline', function(t) {
   })
   t.task(function () {
     result.url = url
-    result.opts.maxSize = 4
-    return inline(result)
+    return inline(result, { maxSize: 4 })
       .then(function () {
         t.equal(result.url, url, 'should not inline')
       })
@@ -48,29 +38,26 @@ test('inline', function(t) {
 })
 
 test('copy, string `assetOutFolder`', function(t) {
-  let result = {
-    file: fixtures('images/octocat_setup.png'),
-    url: 'images/octocat_setup.png',
-    opts: {
-      from: fixtures('a.css'),
-      to: fixtures('build', 'css', 'a.css'),
-      assetOutFolder: fixtures('build', 'images'),
-    },
-  }
+  let result = new Result('images/octocat_setup.png', {
+    from: fixtures('a.css'),
+    to: fixtures('build', 'css', 'a.css'),
+  })
   let dest = fixtures('build', 'images', 'octocat_setup.png')
   return del(dest)
     .then(function () {
-      return copy(result)
+      return copy(result, {
+        assetOutFolder: fixtures('build', 'images'),
+      })
     })
     .then(function () {
       t.equal(result.url, '../images/octocat_setup.png', 'should transform url')
       let assetFile = path.resolve(
-        path.dirname(result.opts.to), result.url
+        path.dirname(result.to), result.url
       )
       t.equal(assetFile, dest, 'should write to correct path')
       return Promise.all([
-        base64(assetFile),
-        base64(fixtures('images', 'octocat_setup.png')),
+        Result.dataUrl(assetFile),
+        Result.dataUrl(fixtures('images', 'octocat_setup.png')),
       ])
     })
     .then(function (urls) {
@@ -79,33 +66,30 @@ test('copy, string `assetOutFolder`', function(t) {
 })
 
 test('copy, function `assetOutFolder`', function(t) {
-  let result = {
-    file: fixtures('images/octocat_setup.png'),
-    url: 'images/octocat_setup.png',
-    opts: {
-      from: fixtures('a.css'),
-      to: fixtures('build', 'css', 'a.css'),
-      assetOutFolder: function (file, opts) {
-        return path.dirname(
-          path.join(path.dirname(opts.to), 'i', path.basename(file))
-        )
-      },
-    },
-  }
+  let result = new Result('images/octocat_setup.png', {
+    from: fixtures('a.css'),
+    to: fixtures('build', 'css', 'a.css'),
+  })
   let dest = fixtures('build', 'css', 'i', 'octocat_setup.png')
   return del(dest)
     .then(function () {
-      return copy(result)
+      return copy(result, {
+        assetOutFolder: function (file, opts) {
+          return path.dirname(
+            path.join(path.dirname(opts.to), 'i', path.basename(file))
+          )
+        },
+      })
     })
     .then(function () {
       t.equal(result.url, 'i/octocat_setup.png', 'should transform url')
       let assetFile = path.resolve(
-        path.dirname(result.opts.to), result.url
+        path.dirname(result.to), result.url
       )
       t.equal(assetFile, dest, 'should write to correct path')
       return Promise.all([
-        base64(assetFile),
-        base64(fixtures('images', 'octocat_setup.png')),
+        Result.dataUrl(assetFile),
+        Result.dataUrl(fixtures('images', 'octocat_setup.png')),
       ])
     })
     .then(function (urls) {
@@ -114,14 +98,10 @@ test('copy, function `assetOutFolder`', function(t) {
 })
 
 test('copy, default `assetOutFolder`', function(t) {
-  let result = {
-    file: fixtures('images/octocat_setup.png'),
-    url: 'images/octocat_setup.png',
-    opts: {
-      from: fixtures('a.css'),
-      to: fixtures('build', 'css', 'a.css'),
-    },
-  }
+  let result = new Result('images/octocat_setup.png', {
+    from: fixtures('a.css'),
+    to: fixtures('build', 'css', 'a.css'),
+  })
   let dest = fixtures('build', 'css', 'images', 'octocat_setup.png')
   return del(dest)
     .then(function () {
@@ -130,12 +110,12 @@ test('copy, default `assetOutFolder`', function(t) {
     .then(function () {
       t.equal(result.url, 'images/octocat_setup.png', 'should not transform url')
       let assetFile = path.resolve(
-        path.dirname(result.opts.to), result.url
+        path.dirname(result.to), result.url
       )
       t.equal(assetFile, dest, 'should write to correct path')
       return Promise.all([
-        base64(assetFile),
-        base64(fixtures('images', 'octocat_setup.png')),
+        Result.dataUrl(assetFile),
+        Result.dataUrl(fixtures('images', 'octocat_setup.png')),
       ])
     })
     .then(function (urls) {
@@ -144,28 +124,25 @@ test('copy, default `assetOutFolder`', function(t) {
 })
 
 test('copy, `useHash`', function(t) {
-  let result = {
-    file: fixtures('images/octocat_setup.png'),
-    url: 'images/octocat_setup.png',
-    opts: {
-      useHash: true,
-      from: fixtures('a.css'),
-      to: fixtures('build', 'css', 'a.css'),
-    },
-  }
+  let result = new Result('images/octocat_setup.png', {
+    from: fixtures('a.css'),
+    to: fixtures('build', 'css', 'a.css'),
+  })
   return del(fixtures('build'))
     .then(function () {
-      return copy(result)
+      return copy(result, {
+        useHash: true,
+      })
     })
     .then(function () {
       t.equal(result.url, 'images/84f6371ecad812ad78859b234943b5c8152e7fdb.png', 'should not transform url')
       let assetFile = path.resolve(
-        path.dirname(result.opts.to), result.url
+        path.dirname(result.to), result.url
       )
       t.equal(assetFile, fixtures('build', 'css', 'images', '84f6371ecad812ad78859b234943b5c8152e7fdb.png'), 'should write to correct path')
       return Promise.all([
-        base64(assetFile),
-        base64(fixtures('images', 'octocat_setup.png')),
+        Result.dataUrl(assetFile),
+        Result.dataUrl(fixtures('images', 'octocat_setup.png')),
       ])
     })
     .then(function (urls) {

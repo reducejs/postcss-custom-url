@@ -13,17 +13,16 @@ Transform `url()` in css
 
 ```javascript
 var url = require('postcss-custom-url')
-var custom = url.custom
 var util = url.util
 
 var postcss = require('postcss')
 var path = require('path')
 var fixtures = path.resolve.bind(path, __dirname, 'fixtures')
 
-postcss(url({
-  maxSize: 5,
-  assetOutFolder: fixtures('build', 'images'),
-}))
+postcss(url([
+  [ util.inline, { maxSize: 5 } ],
+  [ util.copy, { assetOutFolder: fixtures('build', 'images') } ],
+]))
 .process(
   '.a{ background-image: url(images/octocat_setup.png); }',
   { from: fixtures('a.css'), to: fixtures('build', 'css', 'a.css') }
@@ -35,69 +34,107 @@ postcss(url({
 
 ```
 
-## url
-
-The same with `custom.bind(null, [ util.inline, util.copy ])`
-
-## plugin = url.plugin(name, customTransforms)
-`url.plugin` will create a postcss-plugin,
-with the function `custom.bind(null, customTransforms)`
-
-If `name` not `string`,
-it is treated as `customTransforms`
-
-If `customTransforms` falsy,
-`[ util.rebase ]` is used.
-
-```javascript
-var rebase = url.plugin()
-postcss(rebase())
-
-```
-
-
-## plugin = custom.bind(customTransforms)
-
-### plugin
-
-Type: `Function`
-
-Your postcss-plugin function
+## url(customTransforms)
 
 ### customTransforms
 
 Type: `Array`
 
-An array of transform functions.
+Default: `[ util.rebase ]`
 
-The transform function signature:
-`transformFn(result)`
+An array of transforms
+
+### transforms
+
+Type: `Function`, `Array`
+
+Signature: `transformFn(result, ...args)`
+
+Function to transform url,
+through modifying  `result.url`
+
+If `Array`, `args` will be the elements from the second.
 
 #### result
 
-Type: `Object`
+Type: `Result`
 
-* `result.url`: the url in css. Transforms should modify this field
-* `result.file`: the asset file path, if `result.url` is relative
-* `result.opts`: options mixed from both the plugin and postcss. It always inludes `from` and `to`.
+## Result
 
-#### transformFn
+### url
 
-Type: `Function`
+Type: `String`
 
-It could be synchronous,
-or made asynchronous in the
-[gulp](https://github.com/gulpjs/gulp/blob/master/docs/API.md#async-task-support)-way:
+### from
 
-* accept a callback
-* return a promise
-* return a stream
+The CSS source path
 
-**NOTE**: usually, you should check `result.url` before you do your transformations.
+### to
+
+The CSS destination path
+
+### file
+
+The asset source path
+
+### asset
+
+Type: `Asset`
+
+### isEmpty()
+
+Same with `!result.url`
+
+### hasProtocal()
+
+
+### isAbsolute()
+
+
+### isDataUrl()
+
+
+### isHash()
+
+
+### isRelative()
+
+### Result.getFile(url, opts)
+
+### Result.dataUrl(file)
+
+## Asset
+
+### mimeType
+
+### size()
+
+Return a promise to get the size of the asset
+
+### data()
+
+Return a promise to get the contents of the asset
+
+### shasum()
+
+Return a promise to get the sha1 of the contents of the asset
+
+### base64()
+
+Return a promise to get the base64 of the contents of the asset
+
+### dataUrl()
+
+Return a promise to get the data url of the asset
 
 ## util
 
-A group of methods.
+A group of transform methods.
+
+### rebase
+
+Transform `result.url` according to `result.to`
+
 
 ### inline
 

@@ -2,15 +2,16 @@ import test from 'tape'
 import custom from '../lib/custom'
 import path from 'path'
 import postcss from 'postcss'
-import { base64, inline, copy } from '../lib/util'
+import { inline, copy } from '../lib/util'
+import Result from '../lib/result'
 import del from 'del'
 
 var fixtures = path.resolve.bind(path, __dirname, 'fixtures')
 
 test('custom', function(t) {
-  let url = custom.bind(null, [
-    inline,
-    [function (base, result) {
+  let url = custom([
+    [ inline, { maxSize: 10 } ],
+    [function (result, base) {
       if (result.url.slice(0, 5) === 'data:') {
         return
       }
@@ -22,24 +23,22 @@ test('custom', function(t) {
   let expectedBody = [ '.a{background-image:url(', ')url(i/octocat_fork.png);}' ]
   return del(fixtures('build'))
     .then(function () {
-      return base64(fixtures('images', 'octocat_setup.png'))
+      return Result.dataUrl(fixtures('images', 'octocat_setup.png'))
     })
     .then(function (dataUrl) {
       expectedBody.splice(1, 0, dataUrl)
       expectedBody = expectedBody.join('')
-      return postcss(url({
-        maxSize: 10,
-      }))
-      .process(
-        body,
-        { from: fixtures('a.css'), to: fixtures('build', 'css', 'a.css') }
-      )
+      return postcss(url)
+        .process(body, {
+          from: fixtures('a.css'),
+          to: fixtures('build', 'css', 'a.css'),
+        })
     })
     .then(function (result) {
       t.equal(result.css.replace(/\s+/g, ''), expectedBody, 'should inline and transform url')
       return Promise.all([
-        base64(fixtures('build', 'css/i', 'octocat_fork.png')),
-        base64(fixtures('images', 'octocat_fork.png')),
+        Result.dataUrl(fixtures('build', 'css/i', 'octocat_fork.png')),
+        Result.dataUrl(fixtures('images', 'octocat_fork.png')),
       ])
     })
     .then(function (urls) {
