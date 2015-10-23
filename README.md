@@ -39,6 +39,23 @@ postcss(url({
 
 The same with `custom.bind([ util.inline, util.copy ])`
 
+## plugin = url.plugin(name, customTransforms)
+`url.plugin` will create a postcss-plugin,
+with the function `custom.bind(customTransforms)`
+
+If `name` not `string`,
+it is treated as `customTransforms`
+
+If `customTransforms` falsy,
+`[ util.rebase ]` is used.
+
+```javascript
+var rebase = url.plugin()
+postcss(rebase())
+
+```
+
+
 ## plugin = custom.bind(customTransforms)
 
 ### plugin

@@ -1,9 +1,23 @@
 import test from 'tape'
-import { base64, inline, copy } from '../lib/util'
+import { base64, inline, copy, rebase } from '../lib/util'
 import path from 'path'
 import del from 'del'
 
 var fixtures = path.resolve.bind(path, __dirname, 'fixtures')
+
+test('rebase', function(t) {
+  let result = {
+    file: '/path/to/src/css/i/a.png',
+    url: 'i/a.png',
+    opts: {
+      from: '/path/to/src/css/a.css',
+      to: '/path/to/build/css/a.css',
+    },
+  }
+  rebase(result)
+  t.equal(result.url, '../../src/css/i/a.png')
+  t.end()
+})
 
 test('inline', function(t) {
   let url = 'images/octocat_setup.png'
