@@ -81,22 +81,6 @@ The asset source path
 
 Type: `Asset`
 
-### isEmpty()
-
-Same with `!result.url`
-
-### hasProtocal()
-
-
-### isAbsolute()
-
-
-### isDataUrl()
-
-
-### isHash()
-
-
 ### isRelative()
 
 ### Result.getFile(url, opts)
