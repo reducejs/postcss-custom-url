@@ -8,7 +8,7 @@ import Result from '../lib/result'
 
 var fixtures = path.resolve.bind(path, __dirname, 'fixtures')
 
-test.only('main', function(t) {
+test('main', function(t) {
   let unchanged = '.b{c:url(http://a);d:url(data:image/png;base64,,,)}'
   let body = unchanged + '.a{ background-image: url("images/octocat_setup.png") url(images/octocat_fork.png); }'
   let expectedBody = [ unchanged + '.a{background-image:url(', ')url(../images/octocat_fork.png);}' ]
