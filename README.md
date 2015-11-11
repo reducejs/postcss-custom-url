@@ -148,6 +148,20 @@ Default: `false`
 
 If `true`, assets are renamed by their sha1 hashes
 
+#### name
+Specify how to rename the asset.
+
+It only works when `useHash` is false.
+
+Type: `String`
+
+Special patterns:
+
+* `[name]`: replaced with the basename of the asset, without the extension.
+* `[hash]`: replaced with the hash
+
+For example, you can specify `[name].[hash]` to keep the original asset name while using its hash.
+
 #### assetOutFolder
 
 Type: `String`, `Function`

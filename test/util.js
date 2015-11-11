@@ -135,11 +135,38 @@ test('copy, `useHash`', function(t) {
       })
     })
     .then(function () {
-      t.equal(result.url, 'images/84f6371ecad812ad78859b234943b5c8152e7fdb.png', 'should not transform url')
+      t.equal(result.url, 'images/84f6371.png', 'should not transform url')
       let assetFile = path.resolve(
         path.dirname(result.to), result.url
       )
-      t.equal(assetFile, fixtures('build', 'css', 'images', '84f6371ecad812ad78859b234943b5c8152e7fdb.png'), 'should write to correct path')
+      t.equal(assetFile, fixtures('build', 'css', 'images', '84f6371.png'), 'should write to correct path')
+      return Promise.all([
+        Result.dataUrl(assetFile),
+        Result.dataUrl(fixtures('images', 'octocat_setup.png')),
+      ])
+    })
+    .then(function (urls) {
+      t.equal(urls[0], urls[1], 'should write the correct contents')
+    })
+})
+
+test('copy, `name`', function(t) {
+  let result = new Result('images/octocat_setup.png', {
+    from: fixtures('a.css'),
+    to: fixtures('build', 'css', 'a.css'),
+  })
+  return del(fixtures('build'))
+    .then(function () {
+      return copy(result, {
+        name: '[name].[hash]',
+      })
+    })
+    .then(function () {
+      t.equal(result.url, 'images/octocat_setup.84f6371.png', 'should not transform url')
+      let assetFile = path.resolve(
+        path.dirname(result.to), result.url
+      )
+      t.equal(assetFile, fixtures('build', 'css', 'images', 'octocat_setup.84f6371.png'), 'should write to correct path')
       return Promise.all([
         Result.dataUrl(assetFile),
         Result.dataUrl(fixtures('images', 'octocat_setup.png')),
