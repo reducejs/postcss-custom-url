@@ -1,4 +1,12 @@
-<!-- LATEST 38d1b1b -->
+<!-- LATEST df68282 -->
+
+## [v3.1.2](https://github.com/zoubin/postcss-custom-url/commit/df68282) (2015-11-11)
+
+* [ 2015-11-11 [0fd0b6b](https://github.com/zoubin/postcss-custom-url/commit/0fd0b6b) ] Remove test.only
+
+* [ 2015-11-11 [9fa3112](https://github.com/zoubin/postcss-custom-url/commit/9fa3112) ] Fix: strip quotes around urls
+
+* [ 2015-11-11 [ada0170](https://github.com/zoubin/postcss-custom-url/commit/ada0170) ] CHANGELOG
 
 ## [v3.1.1](https://github.com/zoubin/postcss-custom-url/commit/38d1b1b) (2015-11-11)
 
