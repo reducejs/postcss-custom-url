@@ -49,6 +49,7 @@
     "gulp-json-editor": "^2.2.1",
     "gulp-tape": "0.0.5",
     "isparta": "^3.0.4",
+    "postcss": "*",
     "tap-spec": "^4.1.0",
     "tape": "^4.2.0",
     "task-tape": "^1.0.0"
