@@ -1,4 +1,17 @@
-<!-- LATEST 5482e22 -->
+<!-- LATEST 38d1b1b -->
+
+## [v3.1.1](https://github.com/zoubin/postcss-custom-url/commit/38d1b1b) (2015-11-11)
+
+* [ 2015-11-11 [3c21c9e](https://github.com/zoubin/postcss-custom-url/commit/3c21c9e) ] Add postcss to devDependencies
+    
+    >postcss is peerDependencies, and node 5 does not install
+    peerDependencies anymore.
+
+* [ 2015-11-11 [82f3900](https://github.com/zoubin/postcss-custom-url/commit/82f3900) ] Update gulp-tape
+
+* [ 2015-11-11 [c379b3b](https://github.com/zoubin/postcss-custom-url/commit/c379b3b) ] Travis: node 4 and 5
+
+* [ 2015-11-11 [98216d1](https://github.com/zoubin/postcss-custom-url/commit/98216d1) ] CHANGELOG
 
 ## [v3.1.0](https://github.com/zoubin/postcss-custom-url/commit/5482e22) (2015-11-11)
 
