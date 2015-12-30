@@ -26,11 +26,11 @@
   },
   "homepage": "https://github.com/zoubin/postcss-custom-url#readme",
   "dependencies": {
-    "async-array-methods": "^1.0.2",
+    "async-array-methods": "^2.1.0",
     "getp": "^1.2.0",
     "mime": "^1.3.4",
     "mkdirp": "^0.5.1",
-    "node-promisify": "^0.2.2",
+    "node-promisify": "^1.2.0",
     "shasum": "^1.0.2",
     "util-mix": "^3.0.2"
   },
