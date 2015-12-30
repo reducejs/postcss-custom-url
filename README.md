@@ -1,13 +1,11 @@
 # postcss-custom-url
-Transform `url()` in css
-
-[![npm](https://nodei.co/npm/postcss-custom-url.png?downloads=true)](https://www.npmjs.org/package/postcss-custom-url)
-
 [![version](https://img.shields.io/npm/v/postcss-custom-url.svg)](https://www.npmjs.org/package/postcss-custom-url)
 [![status](https://travis-ci.org/zoubin/postcss-custom-url.svg?branch=master)](https://travis-ci.org/zoubin/postcss-custom-url)
 [![coverage](https://img.shields.io/coveralls/zoubin/postcss-custom-url.svg)](https://coveralls.io/github/zoubin/postcss-custom-url)
 [![dependencies](https://david-dm.org/zoubin/postcss-custom-url.svg)](https://david-dm.org/zoubin/postcss-custom-url)
 [![devDependencies](https://david-dm.org/zoubin/postcss-custom-url/dev-status.svg)](https://david-dm.org/zoubin/postcss-custom-url#info=devDependencies)
+
+Transform `url()` in css.
 
 ## Usage
 
