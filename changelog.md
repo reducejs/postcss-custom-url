@@ -1,53 +1,66 @@
-<!-- LATEST df68282 -->
+<!-- 0390d2a 1455782450000 -->
 
-## [v3.1.2](https://github.com/zoubin/postcss-custom-url/commit/df68282) (2015-11-11)
+## [v4.0.0](https://github.com/reducejs/postcss-custom-url/commit/0390d2a) (2016-02-18)
 
-* [ 2015-11-11 [0fd0b6b](https://github.com/zoubin/postcss-custom-url/commit/0fd0b6b) ] Remove test.only
+* [[`69f54fb`](https://github.com/reducejs/postcss-custom-url/commit/69f54fb)] travis: no 0.12
 
-* [ 2015-11-11 [9fa3112](https://github.com/zoubin/postcss-custom-url/commit/9fa3112) ] Fix: strip quotes around urls
+* [[`d96f646`](https://github.com/reducejs/postcss-custom-url/commit/d96f646)] No babel
 
-* [ 2015-11-11 [ada0170](https://github.com/zoubin/postcss-custom-url/commit/ada0170) ] CHANGELOG
+* [[`8cf2079`](https://github.com/reducejs/postcss-custom-url/commit/8cf2079)] travis, badges
 
-## [v3.1.1](https://github.com/zoubin/postcss-custom-url/commit/38d1b1b) (2015-11-11)
+* [[`4de9a75`](https://github.com/reducejs/postcss-custom-url/commit/4de9a75)] Update deps
 
-* [ 2015-11-11 [3c21c9e](https://github.com/zoubin/postcss-custom-url/commit/3c21c9e) ] Add postcss to devDependencies
+* [[`a2c587a`](https://github.com/reducejs/postcss-custom-url/commit/a2c587a)] CHANGELOG
+
+## [v3.1.2](https://github.com/reducejs/postcss-custom-url/commit/df68282) (2015-11-11)
+
+* [[`0fd0b6b`](https://github.com/reducejs/postcss-custom-url/commit/0fd0b6b)] Remove test.only
+
+* [[`9fa3112`](https://github.com/reducejs/postcss-custom-url/commit/9fa3112)] Fix: strip quotes around urls
+
+* [[`ada0170`](https://github.com/reducejs/postcss-custom-url/commit/ada0170)] CHANGELOG
+
+## [v3.1.1](https://github.com/reducejs/postcss-custom-url/commit/38d1b1b) (2015-11-11)
+
+* [[`3c21c9e`](https://github.com/reducejs/postcss-custom-url/commit/3c21c9e)] Add postcss to devDependencies
+
     
     >postcss is peerDependencies, and node 5 does not install
     peerDependencies anymore.
 
-* [ 2015-11-11 [82f3900](https://github.com/zoubin/postcss-custom-url/commit/82f3900) ] Update gulp-tape
+* [[`82f3900`](https://github.com/reducejs/postcss-custom-url/commit/82f3900)] Update gulp-tape
 
-* [ 2015-11-11 [c379b3b](https://github.com/zoubin/postcss-custom-url/commit/c379b3b) ] Travis: node 4 and 5
+* [[`c379b3b`](https://github.com/reducejs/postcss-custom-url/commit/c379b3b)] Travis: node 4 and 5
 
-* [ 2015-11-11 [98216d1](https://github.com/zoubin/postcss-custom-url/commit/98216d1) ] CHANGELOG
+* [[`98216d1`](https://github.com/reducejs/postcss-custom-url/commit/98216d1)] CHANGELOG
 
-## [v3.1.0](https://github.com/zoubin/postcss-custom-url/commit/5482e22) (2015-11-11)
+## [v3.1.0](https://github.com/reducejs/postcss-custom-url/commit/5482e22) (2015-11-11)
 
-* [ 2015-11-11 [b54c022](https://github.com/zoubin/postcss-custom-url/commit/b54c022) ] add `name` option for util.copy
+* [[`b54c022`](https://github.com/reducejs/postcss-custom-url/commit/b54c022)] add `name` option for util.copy
 
-* [ 2015-11-11 [0c84c92](https://github.com/zoubin/postcss-custom-url/commit/0c84c92) ] Use decl.source.input.from as asset from
+* [[`0c84c92`](https://github.com/reducejs/postcss-custom-url/commit/0c84c92)] Use decl.source.input.from as asset from
 
-## [v3.0.0](https://github.com/zoubin/postcss-custom-url/commit/86e4e31) (2015-10-30)
+## [v3.0.0](https://github.com/reducejs/postcss-custom-url/commit/86e4e31) (2015-10-30)
 
-* [ 2015-10-30 [69df942](https://github.com/zoubin/postcss-custom-url/commit/69df942) ] remove unused methods
+* [[`69df942`](https://github.com/reducejs/postcss-custom-url/commit/69df942)] remove unused methods
 
-* [ 2015-10-23 [401d973](https://github.com/zoubin/postcss-custom-url/commit/401d973) ] dependencies
+* [[`401d973`](https://github.com/reducejs/postcss-custom-url/commit/401d973)] dependencies
 
-## [v2.0.0](https://github.com/zoubin/postcss-custom-url/commit/0b6dc83) (2015-10-23)
+## [v2.0.0](https://github.com/reducejs/postcss-custom-url/commit/0b6dc83) (2015-10-23)
 
-* [ 2015-10-23 [c19c19a](https://github.com/zoubin/postcss-custom-url/commit/c19c19a) ] refactor
+* [[`c19c19a`](https://github.com/reducejs/postcss-custom-url/commit/c19c19a)] refactor
 
-* [ 2015-10-23 [f401c10](https://github.com/zoubin/postcss-custom-url/commit/f401c10) ] readme
+* [[`f401c10`](https://github.com/reducejs/postcss-custom-url/commit/f401c10)] readme
 
-## [v1.1.0](https://github.com/zoubin/postcss-custom-url/commit/75786d7) (2015-10-23)
+## [v1.1.0](https://github.com/reducejs/postcss-custom-url/commit/75786d7) (2015-10-23)
 
-* [ 2015-10-23 [aae54f6](https://github.com/zoubin/postcss-custom-url/commit/aae54f6) ] add `plugin` method
+* [[`aae54f6`](https://github.com/reducejs/postcss-custom-url/commit/aae54f6)] add `plugin` method
 
-* [ 2015-10-23 [4003aeb](https://github.com/zoubin/postcss-custom-url/commit/4003aeb) ] update task-tape
+* [[`4003aeb`](https://github.com/reducejs/postcss-custom-url/commit/4003aeb)] update task-tape
 
-* [ 2015-10-23 [9abbf80](https://github.com/zoubin/postcss-custom-url/commit/9abbf80) ] custom, util
+* [[`9abbf80`](https://github.com/reducejs/postcss-custom-url/commit/9abbf80)] custom, util
 
-* [ 2015-10-22 [2090670](https://github.com/zoubin/postcss-custom-url/commit/2090670) ] custom-url
+* [[`2090670`](https://github.com/reducejs/postcss-custom-url/commit/2090670)] custom-url
 
-* [ 2015-10-21 [4e4dbfb](https://github.com/zoubin/postcss-custom-url/commit/4e4dbfb) ] Initial commit
+* [[`4e4dbfb`](https://github.com/reducejs/postcss-custom-url/commit/4e4dbfb)] Initial commit
 
