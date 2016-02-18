@@ -1,23 +1,24 @@
-import test from 'tape'
-import custom from '../lib/custom'
-import path from 'path'
-import postcss from 'postcss'
-import { inline, copy } from '../lib/util'
-import Result from '../lib/result'
-import del from 'del'
+'use strict'
 
-var fixtures = path.resolve.bind(path, __dirname, 'fixtures')
+const test = require('tap').test
+const custom = require('../lib/custom')
+const path = require('path')
+const postcss = require('postcss')
+const util = require('../lib/util')
+const Result = require('../lib/result')
+const del = require('del')
+
+const fixtures = path.resolve.bind(path, __dirname, 'fixtures')
 
 test('custom', function(t) {
   let url = custom([
-    [ inline, { maxSize: 10 } ],
+    [ util.inline, { maxSize: 10 } ],
     [function (result, base) {
-      if (result.url.slice(0, 5) === 'data:') {
-        return
-      }
+      if (result.url.slice(0, 5) === 'data:') return
+
       result.url = path.join(base, path.basename(result.url))
     }, 'i'],
-    copy,
+    util.copy,
   ])
   let body = '.a{ background-image: url(images/octocat_setup.png) url(images/octocat_fork.png); }'
   let expectedBody = [ '.a{background-image:url(', ')url(i/octocat_fork.png);}' ]

@@ -1,17 +1,19 @@
-import test from 'tape'
-import { inline, copy, rebase } from '../lib/util'
-import Result from '../lib/result'
-import path from 'path'
-import del from 'del'
+'use strict'
 
-var fixtures = path.resolve.bind(path, __dirname, 'fixtures')
+const test = require('tap').test
+const util = require('../lib/util')
+const Result = require('../lib/result')
+const path = require('path')
+const del = require('del')
+
+const fixtures = path.resolve.bind(path, __dirname, 'fixtures')
 
 test('rebase', function(t) {
   let result = new Result('i/a.png', {
     from: '/path/to/src/css/a.css',
     to: '/path/to/build/css/a.css',
   })
-  rebase(result)
+  util.rebase(result)
   t.equal(result.url, '../../src/css/i/a.png')
   t.end()
 })
@@ -19,22 +21,20 @@ test('rebase', function(t) {
 test('inline', function(t) {
   let url = 'images/octocat_setup.png'
   let result = new Result(url, { from: fixtures('a.css') })
-  t.task(function () {
-    return inline(result)
-      .then(function () {
-        return Result.dataUrl(result.file)
-      })
-      .then(function (dataUrl) {
-        t.equal(result.url, dataUrl, 'should inline')
-      })
-  })
-  t.task(function () {
-    result.url = url
-    return inline(result, { maxSize: 4 })
-      .then(function () {
-        t.equal(result.url, url, 'should not inline')
-      })
-  })
+  return util.inline(result)
+    .then(function () {
+      return Result.dataUrl(result.file)
+    })
+    .then(function (dataUrl) {
+      t.equal(result.url, dataUrl, 'should inline')
+    })
+    .then(function () {
+      result.url = url
+      return util.inline(result, { maxSize: 4 })
+        .then(function () {
+          t.equal(result.url, url, 'should not inline')
+        })
+    })
 })
 
 test('copy, string `assetOutFolder`', function(t) {
@@ -45,7 +45,7 @@ test('copy, string `assetOutFolder`', function(t) {
   let dest = fixtures('build', 'images', 'octocat_setup.png')
   return del(dest)
     .then(function () {
-      return copy(result, {
+      return util.copy(result, {
         assetOutFolder: fixtures('build', 'images'),
       })
     })
@@ -73,7 +73,7 @@ test('copy, function `assetOutFolder`', function(t) {
   let dest = fixtures('build', 'css', 'i', 'octocat_setup.png')
   return del(dest)
     .then(function () {
-      return copy(result, {
+      return util.copy(result, {
         assetOutFolder: function (file, opts) {
           return path.dirname(
             path.join(path.dirname(opts.to), 'i', path.basename(file))
@@ -105,7 +105,7 @@ test('copy, default `assetOutFolder`', function(t) {
   let dest = fixtures('build', 'css', 'images', 'octocat_setup.png')
   return del(dest)
     .then(function () {
-      return copy(result)
+      return util.copy(result)
     })
     .then(function () {
       t.equal(result.url, 'images/octocat_setup.png', 'should not transform url')
@@ -130,7 +130,7 @@ test('copy, `useHash`', function(t) {
   })
   return del(fixtures('build'))
     .then(function () {
-      return copy(result, {
+      return util.copy(result, {
         useHash: true,
       })
     })
@@ -157,7 +157,7 @@ test('copy, `name`', function(t) {
   })
   return del(fixtures('build'))
     .then(function () {
-      return copy(result, {
+      return util.copy(result, {
         name: '[name].[hash]',
       })
     })

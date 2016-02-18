@@ -1,12 +1,14 @@
-import test from 'tape'
-import url from '../lib/main'
-import path from 'path'
-import del from 'del'
-import postcss from 'postcss'
-import { inline, copy } from '../lib/util'
-import Result from '../lib/result'
+'use strict'
 
-var fixtures = path.resolve.bind(path, __dirname, 'fixtures')
+const test = require('tap').test
+const url = require('..')
+const path = require('path')
+const del = require('del')
+const postcss = require('postcss')
+const util = require('../lib/util')
+const Result = require('../lib/result')
+
+const fixtures = path.resolve.bind(path, __dirname, 'fixtures')
 
 test('main', function(t) {
   let unchanged = '.b{c:url(http://a);d:url(data:image/png;base64,,,)}'
@@ -20,8 +22,8 @@ test('main', function(t) {
       expectedBody.splice(1, 0, dataUrl)
       expectedBody = expectedBody.join('')
       return postcss(url([
-        [ inline, { maxSize: 10 } ],
-        [ copy, { assetOutFolder: fixtures('build', 'images') } ],
+        [ util.inline, { maxSize: 10 } ],
+        [ util.copy, { assetOutFolder: fixtures('build', 'images') } ],
       ]))
       .process(
         body,
