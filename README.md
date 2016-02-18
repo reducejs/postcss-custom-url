@@ -1,9 +1,10 @@
 # postcss-custom-url
 [![version](https://img.shields.io/npm/v/postcss-custom-url.svg)](https://www.npmjs.org/package/postcss-custom-url)
-[![status](https://travis-ci.org/zoubin/postcss-custom-url.svg?branch=master)](https://travis-ci.org/zoubin/postcss-custom-url)
-[![coverage](https://img.shields.io/coveralls/zoubin/postcss-custom-url.svg)](https://coveralls.io/github/zoubin/postcss-custom-url)
-[![dependencies](https://david-dm.org/zoubin/postcss-custom-url.svg)](https://david-dm.org/zoubin/postcss-custom-url)
-[![devDependencies](https://david-dm.org/zoubin/postcss-custom-url/dev-status.svg)](https://david-dm.org/zoubin/postcss-custom-url#info=devDependencies)
+[![status](https://travis-ci.org/reducejs/postcss-custom-url.svg?branch=master)](https://travis-ci.org/reducejs/postcss-custom-url)
+[![dependencies](https://david-dm.org/reducejs/postcss-custom-url.svg)](https://david-dm.org/reducejs/postcss-custom-url)
+[![devDependencies](https://david-dm.org/reducejs/postcss-custom-url/dev-status.svg)](https://david-dm.org/reducejs/postcss-custom-url#info=devDependencies)
+[![license](https://img.shields.io/npm/l/postcss-custom-url.svg)](https://www.npmjs.org/package/postcss-custom-url)
+[![node](https://img.shields.io/node/v/postcss-custom-url.svg)](https://www.npmjs.org/package/postcss-custom-url)
 
 Transform `url()` in css.
 
