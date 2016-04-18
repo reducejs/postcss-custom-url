@@ -128,7 +128,8 @@ postcss(url([
     'copy',
     {
       // copy images to /path/to/build/images
-      // since the final css file is /path/to/build/css/style.css, url is set to ../images/octocat_setup.84f6371.png
+      // since the final css file is /path/to/build/css/style.css,
+      // url is set to ../images/octocat_setup.84f6371.png
       assetOutFolder: '/path/to/build/images',
 
       // rename images like octocat_setup.84f6371.png
