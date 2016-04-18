@@ -20,7 +20,8 @@ var fixtures = path.resolve.bind(path, __dirname, 'fixtures')
 
 postcss(url([
   [ util.inline, { maxSize: 5 } ],
-  [ util.copy, { assetOutFolder: fixtures('build', 'images') } ],
+  // equivalent with util.copy
+  [ 'copy', { assetOutFolder: fixtures('build', 'images') } ],
 ]))
 .process(
   '.a{ background-image: url(images/octocat_setup.png); }',
@@ -41,7 +42,11 @@ Type: `Array`
 
 Default: `[ util.rebase ]`
 
-An array of transforms
+An array of transforms.
+
+If an element is not a function,
+it should be the name of a method exported by `util`:
+`'copy'`, `'inline'`, `'rebase'`.
 
 ### transforms
 
@@ -52,7 +57,8 @@ Signature: `transformFn(result, ...args)`
 Function to transform url,
 through modifying  `result.url`
 
-If `Array`, `args` will be the elements from the second.
+If `Array`, the first element should be the transform function,
+and elements after the first will be treated as its arguments `args`.
 
 #### result
 
