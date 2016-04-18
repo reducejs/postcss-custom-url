@@ -18,7 +18,7 @@ test('custom', function(t) {
 
       result.url = path.join(base, path.basename(result.url))
     }, 'i'],
-    util.copy,
+    'copy',
   ])
   let body = '.a{ background-image: url(images/octocat_setup.png) url(images/octocat_fork.png); }'
   let expectedBody = [ '.a{background-image:url(', ')url(i/octocat_fork.png);}' ]

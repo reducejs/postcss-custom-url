@@ -20,7 +20,8 @@ var fixtures = path.resolve.bind(path, __dirname, 'fixtures')
 
 postcss(url([
   [ util.inline, { maxSize: 5 } ],
-  [ util.copy, { assetOutFolder: fixtures('build', 'images') } ],
+  // equivalent with util.copy
+  [ 'copy', { assetOutFolder: fixtures('build', 'images') } ],
 ]))
 .process(
   '.a{ background-image: url(images/octocat_setup.png); }',
