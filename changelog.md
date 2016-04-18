@@ -1,4 +1,16 @@
-<!-- 0390d2a 1455782450000 -->
+<!-- 5d24916 1460952667000 -->
+
+## [v4.1.0](https://github.com/reducejs/postcss-custom-url/commit/5d24916) (2016-04-18)
+
+* [[`27cecee`](https://github.com/reducejs/postcss-custom-url/commit/27cecee)] coveralls
+
+* [[`c62ae18`](https://github.com/reducejs/postcss-custom-url/commit/c62ae18)] readme
+
+* [[`be830df`](https://github.com/reducejs/postcss-custom-url/commit/be830df)] covalls
+
+* [[`42f9489`](https://github.com/reducejs/postcss-custom-url/commit/42f9489)] Support string argument
+
+* [[`39bed04`](https://github.com/reducejs/postcss-custom-url/commit/39bed04)] CHANGELOG
 
 ## [v4.0.0](https://github.com/reducejs/postcss-custom-url/commit/0390d2a) (2016-02-18)
 
