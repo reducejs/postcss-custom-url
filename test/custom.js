@@ -13,12 +13,7 @@ const fixtures = path.resolve.bind(path, __dirname, 'fixtures')
 test('custom', function(t) {
   let url = custom([
     [ util.inline, { maxSize: 10 } ],
-    [function (result, base) {
-      if (result.url.slice(0, 5) === 'data:') return
-
-      result.url = path.join(base, path.basename(result.url))
-    }, 'i'],
-    'copy',
+    ['copy', { assetOutFolder: fixtures('build', 'css', 'assets'), baseUrl: 'i' }],
   ])
   let body = '.a{ background-image: url(images/octocat_setup.png) url(images/octocat_fork.png); }'
   let expectedBody = [ '.a{background-image:url(', ')url(i/octocat_fork.png);}' ]
@@ -38,7 +33,7 @@ test('custom', function(t) {
     .then(function (result) {
       t.equal(result.css.replace(/\s+/g, ''), expectedBody, 'should inline and transform url')
       return Promise.all([
-        Result.dataUrl(fixtures('build', 'css/i', 'octocat_fork.png')),
+        Result.dataUrl(fixtures('build', 'css/assets', 'octocat_fork.png')),
         Result.dataUrl(fixtures('images', 'octocat_fork.png')),
       ])
     })
