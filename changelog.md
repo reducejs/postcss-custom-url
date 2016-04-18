@@ -1,4 +1,12 @@
-<!-- 5d24916 1460952667000 -->
+<!-- 4cfed5e 1460974453000 -->
+
+## [v4.2.0](https://github.com/reducejs/postcss-custom-url/commit/4cfed5e) (2016-04-18)
+
+* [[`22b2b06`](https://github.com/reducejs/postcss-custom-url/commit/22b2b06)] readme
+
+* [[`2e6101f`](https://github.com/reducejs/postcss-custom-url/commit/2e6101f)] copy, support specifying baseUrl
+
+* [[`0add06b`](https://github.com/reducejs/postcss-custom-url/commit/0add06b)] changelog
 
 ## [v4.1.0](https://github.com/reducejs/postcss-custom-url/commit/5d24916) (2016-04-18)
 
