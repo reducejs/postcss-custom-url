@@ -1,4 +1,10 @@
-<!-- 4cfed5e 1460974453000 -->
+<!-- f98b3ee 1487499733000 -->
+
+## [v4.2.1](https://github.com/reducejs/postcss-custom-url/commit/f98b3ee) (2017-02-19)
+
+* [[`2c928c1`](https://github.com/reducejs/postcss-custom-url/commit/2c928c1)] bugfix: should transform local paths to urls
+
+* [[`ccf977a`](https://github.com/reducejs/postcss-custom-url/commit/ccf977a)] changelog
 
 ## [v4.2.0](https://github.com/reducejs/postcss-custom-url/commit/4cfed5e) (2016-04-18)
 
